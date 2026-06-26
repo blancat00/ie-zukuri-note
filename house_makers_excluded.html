@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: "Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;
+    background:#f4f6f8; color:#222; width:1240px;
+  }
+  .wrap { padding:36px 40px 30px; }
+  .head { text-align:center; margin-bottom:8px; }
+  .head h1 { font-size:30px; font-weight:800; color:#1a2b3c; letter-spacing:1px; }
+  .head .cond {
+    display:inline-block; margin-top:12px; padding:7px 18px; border-radius:20px;
+    background:#1a2b3c; color:#fff; font-size:14px; font-weight:600;
+  }
+  .note { text-align:center; font-size:12.5px; color:#667; margin:10px 0 22px; }
+  .note b { color:#c0392b; }
+
+  .sec { margin-bottom:22px; }
+  .sec-head {
+    display:flex; align-items:center; gap:12px; margin-bottom:12px;
+    padding:9px 16px; border-radius:8px; color:#fff;
+  }
+  .sec-head .no { font-size:22px; font-weight:800; }
+  .sec-head .ttl { font-size:18px; font-weight:700; }
+  .sec-head .cnt { margin-left:auto; font-size:13px; font-weight:600; opacity:.9; }
+
+  .s1 .sec-head { background:#e74c3c; }
+  .s2 .sec-head { background:#e8930c; }
+  .s3 .sec-head { background:#5d6d7e; }
+
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
+  .card {
+    background:#fff; border-radius:8px; padding:12px 14px;
+    box-shadow:0 1px 3px rgba(0,0,0,.08); border-left:5px solid #ccc;
+  }
+  .s1 .card { border-left-color:#e74c3c; }
+  .s2 .card { border-left-color:#e8930c; }
+  .s3 .card { border-left-color:#5d6d7e; }
+  .card .name { font-size:15.5px; font-weight:700; color:#1a2b3c; margin-bottom:4px; }
+  .card .why { font-size:13px; color:#555; line-height:1.45; }
+
+  .foot { text-align:center; font-size:11.5px; color:#889; margin-top:18px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>おすすめに入らなかった企業と理由</h1>
+    <div class="cond">岐阜 ／ 35坪・2階建て ／ 土地込み総額 4,000〜4,500万円 ／ 機能性・生活動線 重視</div>
+  </div>
+  <div class="note">※「微妙＝悪い会社」ではなく、<b>この条件（土地込み予算・動線重視）での優先度</b>が下がった理由です</div>
+
+  <!-- Section 1 -->
+  <div class="sec s1">
+    <div class="sec-head"><span class="no">①</span><span class="ttl">予算オーバー（坪単価が高すぎる）</span><span class="cnt">12社</span></div>
+    <div class="grid">
+      <div class="card"><div class="name">一条工務店</div><div class="why">坪60〜107万、フルは厳しい</div></div>
+      <div class="card"><div class="name">セキスイハイム</div><div class="why">坪60〜102万、仕様で超過</div></div>
+      <div class="card"><div class="name">パナソニック ホームズ</div><div class="why">坪85〜110万、惜しくも届かず</div></div>
+      <div class="card"><div class="name">ミサワホーム</div><div class="why">坪70〜100万、上限に張付く</div></div>
+      <div class="card"><div class="name">積水ハウス</div><div class="why">坪75〜117万、完全オーバー</div></div>
+      <div class="card"><div class="name">大和ハウス</div><div class="why">坪75〜112万、一段足りない</div></div>
+      <div class="card"><div class="name">トヨタホーム</div><div class="why">坪80〜110万、鉄骨で予算外</div></div>
+      <div class="card"><div class="name">住友林業</div><div class="why">坪80〜120万、収まらない</div></div>
+      <div class="card"><div class="name">ヘーベルハウス</div><div class="why">坪93〜130万、最も高額</div></div>
+      <div class="card"><div class="name">新和建設</div><div class="why">坪70〜100万、下限で綱渡り</div></div>
+      <div class="card"><div class="name">桧家住宅</div><div class="why">Z空調入れると予算圧迫</div></div>
+      <div class="card"><div class="name">クレバリーホーム</div><div class="why">タイルで坪が上がる</div></div>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="sec s2">
+    <div class="sec-head"><span class="no">②</span><span class="ttl">方向性のズレ（安さ・素材が主役で動線が前面でない）</span><span class="cnt">5社</span></div>
+    <div class="grid">
+      <div class="card"><div class="name">タマホーム</div><div class="why">コスパ規格が主戦場</div></div>
+      <div class="card"><div class="name">withHOME</div><div class="why">ローコスト全振り</div></div>
+      <div class="card"><div class="name">シンプル工務店</div><div class="why">安さ・自由設計が中心</div></div>
+      <div class="card"><div class="name">チェックハウス</div><div class="why">素材・耐震が売り</div></div>
+      <div class="card"><div class="name">ユニバーサルホーム</div><div class="why">地熱床の設備に依存</div></div>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="sec s3">
+    <div class="sec-head"><span class="no">③</span><span class="ttl">情報不足・品質のバラつきリスク</span><span class="cnt">4社</span></div>
+    <div class="grid">
+      <div class="card"><div class="name">伸和建設</div><div class="why">坪単価の情報が薄い</div></div>
+      <div class="card"><div class="name">まごころ住宅</div><div class="why">強みがふんわり</div></div>
+      <div class="card"><div class="name">アイフルホーム</div><div class="why">FCで店ごと質にバラつき</div></div>
+      <div class="card"><div class="name">アーキテックス</div><div class="why">複数ブランドで複雑</div></div>
+    </div>
+  </div>
+
+  <div class="foot">条件に合致した上位候補：ユーハウス／グランハウス／森住建／西濃建設／リグスタイル／アキュラホーム／アサヒグローバルホーム ほか</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:18px;}
+body{font-family:"Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;background:#f1f4f8;color:#222;width:1320px;}
+.hero{background:linear-gradient(135deg,#0f1f33 0%,#1a2b3c 55%,#234265 100%);color:#fff;padding:64px 60px 56px;text-align:center;}
+.hero h1{font-size:46px;font-weight:800;letter-spacing:1px;margin-bottom:14px;}
+.hero .sub{font-size:18px;color:#bcd4ee;font-weight:500;margin-bottom:22px;}
+.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:24px;font-size:14px;font-weight:700;}
+.src-note{margin-top:20px;font-size:12.5px;color:#8fa8c4;}
+
+.wrap{padding:50px 60px 60px;}
+.section{margin-bottom:54px;}
+.section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px;}
+.section-head .num{font-size:34px;font-weight:800;color:#cdd9e6;}
+.section-head h2{font-size:27px;font-weight:800;color:#1a2b3c;}
+.section-head .desc{font-size:14px;color:#778;margin-left:6px;}
+
+/* Section 1: SNS trend cards */
+.trend-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.tcard{background:#fff;border-radius:14px;box-shadow:0 3px 10px rgba(20,40,70,.08);overflow:hidden;display:flex;flex-direction:column;}
+.tcard .icowrap{background:linear-gradient(135deg,#eef4fb,#dce8f7);padding:26px;display:flex;justify-content:center;align-items:center;height:120px;}
+.tcard .body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;}
+.tcard h3{font-size:18.5px;font-weight:800;color:#1a2b3c;margin-bottom:8px;}
+.tcard p{font-size:13.8px;color:#556;line-height:1.6;flex:1;}
+.tcard .why{margin-top:10px;font-size:12.5px;color:#2e86de;font-weight:700;}
+.tcard .tag{display:inline-block;margin-top:12px;padding:4px 12px;border-radius:6px;font-size:11.5px;font-weight:800;color:#fff;align-self:flex-start;}
+.tag.new{background:#2e86de;}.tag.warn{background:#e74c3c;}.tag.fit{background:#27ae60;}
+
+/* Section 2: ranking */
+.rank-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.rankcard{background:#fff;border-radius:14px;box-shadow:0 3px 10px rgba(20,40,70,.08);padding:24px 26px;}
+.rankcard h3{font-size:19px;font-weight:800;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.rankcard.good h3{color:#1a8a4a;}
+.rankcard.bad h3{color:#c0392b;}
+.rankrow{margin-bottom:14px;}
+.rankrow .lbl{display:flex;justify-content:space-between;font-size:14px;font-weight:700;color:#1a2b3c;margin-bottom:5px;}
+.rankrow .lbl span.pct{font-weight:800;}
+.barbg{background:#eef1f4;border-radius:6px;height:13px;overflow:hidden;}
+.barfg{height:100%;border-radius:6px;}
+.good .barfg{background:linear-gradient(90deg,#27ae60,#5fd38a);}
+.bad .barfg{background:linear-gradient(90deg,#e74c3c,#f3998a);}
+.rankrow .note{font-size:12px;color:#778;margin-top:3px;}
+
+/* Section 3: tradeoff */
+.tradeoff{display:grid;grid-template-columns:1fr;gap:18px;}
+.tocard{background:#fff;border-radius:14px;box-shadow:0 3px 10px rgba(20,40,70,.08);padding:22px 26px;display:grid;grid-template-columns:170px 1fr;gap:20px;align-items:center;}
+.tocard .ttl{font-size:19px;font-weight:800;color:#1a2b3c;text-align:center;}
+.tocard .ttl .ic{display:block;margin:0 auto 8px;}
+.to-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.to-box{border-radius:10px;padding:12px 14px;}
+.to-box .h{font-size:12.5px;font-weight:800;margin-bottom:6px;}
+.to-box p{font-size:12.6px;line-height:1.55;color:#444;}
+.to-box.pos{background:#eafaf1;}
+.to-box.pos .h{color:#1a8a4a;}
+.to-box.neg{background:#fdeeec;}
+.to-box.neg .h{color:#c0392b;}
+.to-box.key{background:#eaf2fc;}
+.to-box.key .h{color:#1f5fa8;}
+
+/* Section 4: floorplan rules */
+.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.rcard{background:#fff;border-radius:14px;box-shadow:0 3px 10px rgba(20,40,70,.08);padding:20px 24px;}
+.rcard h3{font-size:17.5px;font-weight:800;color:#1a2b3c;margin-bottom:10px;}
+.rcard p{font-size:13.6px;color:#556;line-height:1.65;}
+.rcard ul{margin-left:18px;font-size:13.4px;color:#556;line-height:1.7;}
+
+/* Section 5: final checklist */
+.final-box{background:linear-gradient(135deg,#11203a,#1a2b3c);color:#fff;border-radius:18px;padding:36px 42px;}
+.final-box h2{font-size:24px;font-weight:800;color:#ffd166;margin-bottom:20px;text-align:center;}
+.final-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fitem{background:rgba(255,255,255,.06);border-radius:10px;padding:14px 18px;font-size:14px;line-height:1.6;}
+.fitem b{color:#7ddfff;}
+
+.foot{text-align:center;font-size:12px;color:#99a;margin-top:30px;padding-bottom:10px;}
+</style></head><body>
+
+<div class="hero">
+<h1>家づくりリアルボイス調査</h1>
+<div class="sub">SNS×施主の本音から導く、35坪・4〜5人家族のための家づくりノート</div>
+<div class="badges">
+  <div class="badge">35坪・2階建て</div>
+  <div class="badge">4〜5人家族</div>
+  <div class="badge">4〜5LDK</div>
+  <div class="badge">高天井希望</div>
+  <div class="badge">収納重視</div>
+</div>
+<div class="src-note">Instagram/X発の話題＋施主ブログ・口コミ・大規模アンケートをエージェント調査して合成</div>
+</div>
+
+<div class="wrap">
+
+<div class="section">
+<div class="section-head"><span class="num">01</span><h2>今、SNSで話題の家づくりアイデア</h2><span class="desc">住宅メディアが報じる「インスタで話題」の二次情報ベース</span></div>
+<div class="trend-grid">
+
+  <div class="tcard"><div class="icowrap">
+    <svg width="80" height="80" viewBox="0 0 80 80"><rect x="10" y="30" width="60" height="40" rx="4" fill="#fff" stroke="#9fb4c7" stroke-width="2.5"/><rect x="22" y="10" width="20" height="20" rx="3" fill="#2e86de"/><rect x="22" y="10" width="20" height="20" rx="3" fill="none" stroke="#1a2b3c" stroke-width="1.5"/></svg>
+  </div><div class="body"><h3>ヌック</h3>
+  <p>階段下や廊下の隙間に作る「一人籠れる小空間」。家族の気配を感じつつ少し離れたい需要にハマる。</p>
+  <div class="why">⚠ 用途を決めずに作ると「使わない空間」になる後悔談も</div>
+  <span class="tag new">SNSで人気</span></div></div>
+
+  <div class="tcard"><div class="icowrap">
+    <svg width="90" height="70" viewBox="0 0 90 70"><circle cx="14" cy="14" r="7" fill="#27ae60"/><path d="M14 21 L40 50 L76 50" fill="none" stroke="#27ae60" stroke-width="3" stroke-dasharray="5,4"/><rect x="68" y="40" width="18" height="18" rx="2" fill="#dde6ee"/></svg>
+  </div><div class="body"><h3>ただいま動線</h3>
+  <p>玄関→洗面・浴室→ファミリークローゼットへ直行できる配置。手洗い・着替えが部屋に入る前に完結。</p>
+  <div class="why">→ 共働き世帯のリアルな満足談として拡散</div>
+  <span class="tag fit">家事ラク</span></div></div>
+
+  <div class="tcard"><div class="icowrap">
+    <svg width="90" height="70" viewBox="0 0 90 70"><rect x="5" y="40" width="80" height="25" fill="#c9b89a"/><line x1="5" y1="48" x2="85" y2="48" stroke="#a8966f" stroke-width="1"/><line x1="5" y1="56" x2="85" y2="56" stroke="#a8966f" stroke-width="1"/><rect x="20" y="15" width="50" height="25" rx="3" fill="#eef3fb" stroke="#9fb4c7" stroke-width="2"/></svg>
+  </div><div class="body"><h3>タイル張りテラス・デッキ</h3>
+  <p>木製デッキと違い腐食しにくく、水洗いできるメンテナンス性が「リアルな施主の声」として支持。</p>
+  <div class="why">→ BBQ庭の汚れ対策にもそのまま使える知見</div>
+  <span class="tag fit">メンテ性◎</span></div></div>
+
+  <div class="tcard"><div class="icowrap">
+    <svg width="90" height="70" viewBox="0 0 90 70"><polygon points="5,60 5,40 30,40 30,55 60,55 60,30 85,30 85,60" fill="none" stroke="#8e44ad" stroke-width="3"/></svg>
+  </div><div class="body"><h3>スキップフロア</h3>
+  <p>床の高さを半階ずらして収納やスタディスペースを確保。限られた面積でも空間を多層に使える工夫。</p>
+  <div class="why">→ 省スペース住宅でバズりやすい構造</div>
+  <span class="tag new">SNSで人気</span></div></div>
+
+  <div class="tcard"><div class="icowrap">
+    <svg width="90" height="60" viewBox="0 0 90 60"><rect x="5" y="5" width="20" height="50" fill="#c9a988"/><rect x="27" y="5" width="20" height="50" fill="#a98a63"/><rect x="49" y="5" width="20" height="50" fill="#8a6f4f"/><rect x="71" y="5" width="14" height="50" fill="#e8d9c0"/></svg>
+  </div><div class="body"><h3>アースカラー×タクタイル素材</h3>
+  <p>土・木・石を思わせる落ち着いた色味と、手触りを感じる素材感が2026年の内装トレンドキーワード。</p>
+  <div class="why">→ ナチュラル・オーセンティック内観との相性が良い</div>
+  <span class="tag fit">内観要望に合致</span></div></div>
+
+  <div class="tcard"><div class="icowrap">
+    <svg width="80" height="70" viewBox="0 0 80 70"><polygon points="40,8 72,62 8,62" fill="none" stroke="#e74c3c" stroke-width="3"/><line x1="40" y1="26" x2="40" y2="42" stroke="#e74c3c" stroke-width="3"/><circle cx="40" cy="50" r="2.3" fill="#e74c3c"/></svg>
+  </div><div class="body"><h3>リビング室内干しユニット</h3>
+  <p>一時SNSで大流行したが、生活感が出る・来客対応しにくいという後悔談が今は増加中。</p>
+  <div class="why">→ ランドリールーム等「隠せる場所」での室内干しが代替案</div>
+  <span class="tag warn">要注意</span></div></div>
+
+</div>
+</div>
+
+<div class="section">
+<div class="section-head"><span class="num">02</span><h2>建てて良かった vs 後悔した（リアル統計）</h2><span class="desc">複数の大規模施主アンケートを合成</span></div>
+<div class="rank-cols">
+  <div class="rankcard good"><h3>😊 建てて良かったTOP</h3>
+    <div class="rankrow"><div class="lbl">収納の充実（ファミクロ・パントリー等）</div><div class="barbg"><div class="barfg" style="width:88%"></div></div><div class="note">洗濯機の近くに配置すると満足度が跳ね上がる</div></div>
+    <div class="rankrow"><div class="lbl">家事ラク動線（洗濯〜収納〜各部屋を直結）</div><div class="barbg"><div class="barfg" style="width:80%"></div></div><div class="note">家事の時短効果がそのまま満足度に直結</div></div>
+    <div class="rankrow"><div class="lbl">LDK・庭の居心地</div><div class="barbg"><div class="barfg" style="width:70%"></div></div><div class="note">中庭・プライベートな屋外空間への評価が高い</div></div>
+    <div class="rankrow"><div class="lbl">自由設計で「暮らしに合わせ尽くせた」</div><div class="barbg"><div class="barfg" style="width:64%"></div></div><div class="note">既製品にない満足感</div></div>
+  </div>
+  <div class="rankcard bad"><h3>😣 後悔したTOP（%は調査での回答割合）</h3>
+    <div class="rankrow"><div class="lbl">コンセント位置<span class="pct">約23%</span></div><div class="barbg"><div class="barfg" style="width:23%"></div></div><div class="note">後悔ランキング最多項目</div></div>
+    <div class="rankrow"><div class="lbl">収納不足<span class="pct">約15〜17%</span></div><div class="barbg"><div class="barfg" style="width:17%"></div></div><div class="note">「こだわったのに足りない・動線上にない」</div></div>
+    <div class="rankrow"><div class="lbl">動線の悪さ<span class="pct">約12%</span></div><div class="barbg"><div class="barfg" style="width:12%"></div></div><div class="note">洗濯機〜物干し、買い物〜冷蔵庫の距離不足</div></div>
+    <div class="rankrow"><div class="lbl">日当たり・断熱<span class="pct">約11%</span></div><div class="barbg"><div class="barfg" style="width:11%"></div></div><div class="note">大窓・吹き抜けは開放感と引き換えに冷暖房効率が落ちる</div></div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="section-head"><span class="num">03</span><h2>あんたの希望は「両刃の剣」― 成功のカギ</h2><span class="desc">希望要素ほど成功例・失敗例が両方存在する</span></div>
+<div class="tradeoff">
+
+  <div class="tocard">
+    <div class="ttl"><svg class="ic" width="60" height="50" viewBox="0 0 60 50"><polygon points="30,5 55,45 5,45" fill="none" stroke="#1a2b3c" stroke-width="3"/></svg>高天井・吹き抜け</div>
+    <div class="to-grid3">
+      <div class="to-box pos"><div class="h">良い面</div><p>開放感MAX。光あふれる大空間で家族の気配を感じられる</p></div>
+      <div class="to-box neg"><div class="h">注意点</div><p>冷暖房効率が低下、2階に音・匂いが伝わる、掃除・照明交換がしづらい</p></div>
+      <div class="to-box key"><div class="h">成功のカギ</div><p>高断熱とセットで検討。2階個室を確保したいなら「吹き抜けなしの高天井」が代替案</p></div>
+    </div>
+  </div>
+
+  <div class="tocard">
+    <div class="ttl"><svg class="ic" width="60" height="50" viewBox="0 0 60 50"><rect x="10" y="8" width="40" height="34" rx="3" fill="none" stroke="#1a2b3c" stroke-width="3"/><line x1="30" y1="8" x2="30" y2="42" stroke="#1a2b3c" stroke-width="2"/></svg>ファミリークローゼット</div>
+    <div class="to-grid3">
+      <div class="to-box pos"><div class="h">良い面</div><p>家事動線が大幅短縮。脱衣→収納がノンストップに</p></div>
+      <div class="to-box neg"><div class="h">注意点</div><p>動線の途中にないと使われなくなる。朝の混雑時に複数人入れず逆に不便</p></div>
+      <div class="to-box key"><div class="h">成功のカギ</div><p>洗濯機・脱衣所に直結配置＋家族の人数分の広さを確保するのが鉄則</p></div>
+    </div>
+  </div>
+
+  <div class="tocard">
+    <div class="ttl"><svg class="ic" width="60" height="50" viewBox="0 0 60 50"><rect x="5" y="20" width="14" height="25" fill="none" stroke="#1a2b3c" stroke-width="2.5"/><rect x="23" y="20" width="14" height="25" fill="none" stroke="#1a2b3c" stroke-width="2.5"/><rect x="41" y="20" width="14" height="25" fill="none" stroke="#1a2b3c" stroke-width="2.5" stroke-dasharray="3,2"/></svg>駐車場3台＋庭BBQ</div>
+    <div class="to-grid3">
+      <div class="to-box pos"><div class="h">良い面</div><p>来客時の駐車に困らない。庭でのBBQは家族の満足度が高いイベント</p></div>
+      <div class="to-box neg"><div class="h">注意点</div><p>「3台目はほぼ使わない」例あり。BBQの煙・匂いは近隣配慮が必須</p></div>
+      <div class="to-box key"><div class="h">成功のカギ</div><p>2台＋将来用1台で柔軟に。デッキ＋目隠しフェンスで近隣対策をセットで</p></div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<div class="section">
+<div class="section-head"><span class="num">04</span><h2>35坪・4〜5人家族 間取りの鉄則</h2><span class="desc">具体的なサイズ感での知見</span></div>
+<div class="rule-grid">
+  <div class="rcard"><h3>📐 広さ感の目安</h3>
+  <ul>
+  <li>35坪（約115㎡）は国の目安でも4〜5人家族にちょうど適合する規模</li>
+  <li>LDKは18〜23畳程度が標準的なサイズ</li>
+  <li>子供部屋は1人あたり4.5〜6畳が一般的</li>
+  </ul></div>
+  <div class="rcard"><h3>🗄️ 収納配置の鉄則</h3>
+  <ul>
+  <li>「とりあえず大きな収納」ではなく、<b>置く物を先に決めてから</b>配置する</li>
+  <li>1階：玄関土間収納＋パントリーの組み合わせが定番</li>
+  <li>2階：各部屋にWIC、または共有のファミリークローゼットを1か所</li>
+  </ul></div>
+  <div class="rcard"><h3>⚠️ よくある失敗パターン</h3>
+  <ul>
+  <li>廊下を作りすぎて居住スペースを圧迫</li>
+  <li>図面上は足りると思った収納が、実際の物量に合わず不足</li>
+  <li>キッチンと洗面所（洗濯機）の距離が遠く家事動線が悪化</li>
+  </ul></div>
+  <div class="rcard"><h3>🏠 1F1部屋＋2F4部屋の構成例</h3>
+  <ul>
+  <li>1階の個室を減らしLDKを大きく取り、2階に主寝室＋子供部屋を集約する配分が35坪帯で実例多数</li>
+  <li>1階に水回り＋将来用の個室を置き、2階を子供部屋専用にする「将来の親世帯動線」も選択肢に</li>
+  </ul></div>
+</div>
+</div>
+
+<div class="section">
+<div class="final-box">
+<h2>✅ あんたの家づくりチェックポイント（リアルボイス統合版）</h2>
+<div class="final-list">
+<div class="fitem"><b>収納</b>＝場所より「動線上にあるか」で成否が決まる。洗濯機・脱衣所に直結したファミクロが鉄則</div>
+<div class="fitem"><b>コンセント位置</b>＝後悔ランキング最多（23%）。家具配置・家電の使用場所を先に決めて打合せ前に図面に書き込む</div>
+<div class="fitem"><b>高天井・吹き抜け</b>＝断熱等級6以上とセットで検討。2階個室を優先するなら「吹き抜けなし高天井」も選択肢</div>
+<div class="fitem"><b>駐車場3台＋BBQ庭</b>＝3台目の使用頻度を事前に検討。デッキ＋目隠しフェンスで近隣配慮をセット設計</div>
+<div class="fitem"><b>ヌック・スキップフロア</b>＝「何に使うか」を決めてから採用。decorative目的だけだと使わない空間になりやすい</div>
+<div class="fitem"><b>内装素材</b>＝アースカラー×タクタイル素材は、希望の「ナチュラル・オーセンティック」とSNSトレンドが一致</div>
+</div>
+</div>
+</div>
+
+</div>
+<div class="foot">SNS/施主ブログ/口コミサイト/大規模アンケートの公開情報をAIエージェントが調査・合成（2026年6月時点）</div>
+</body></html>

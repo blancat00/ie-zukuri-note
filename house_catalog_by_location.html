@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="UTF-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{font-size:18px;}
+body{font-family:"Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;background:#f1f4f8;color:#222;width:1360px;}
+.hero{background:linear-gradient(135deg,#0f1f33 0%,#1a2b3c 55%,#234265 100%);color:#fff;padding:60px 60px 50px;text-align:center;}
+.hero h1{font-size:44px;font-weight:800;letter-spacing:1px;margin-bottom:14px;}
+.hero .sub{font-size:17px;color:#bcd4ee;font-weight:500;margin-bottom:22px;}
+.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);padding:8px 18px;border-radius:24px;font-size:13.5px;font-weight:700;}
+.legend{margin-top:22px;font-size:13px;color:#bcd4ee;}
+.legend b{padding:2px 9px;border-radius:5px;margin:0 3px;}
+.hint{margin-top:14px;font-size:13px;color:#7ddfff;font-weight:700;}
+
+.wrap{padding:48px 56px 60px;}
+.bigsec{margin-bottom:18px;}
+.bigsec-head{display:flex;align-items:center;gap:14px;padding:14px 26px;border-radius:14px;margin-bottom:22px;color:#fff;}
+.bigsec-head.partA{background:linear-gradient(90deg,#1a2b3c,#2e4a6b);}
+.bigsec-head.partB{background:linear-gradient(90deg,#5a3b8e,#7c52b8);}
+.bigsec-head h2{font-size:24px;font-weight:800;}
+.bigsec-head .d{font-size:13px;opacity:.85;margin-left:6px;}
+
+/* accordion */
+details.loc{margin-bottom:14px;background:transparent;}
+details.loc summary{list-style:none;cursor:pointer;background:#fff;border-radius:14px;box-shadow:0 3px 10px rgba(20,40,70,.08);padding:16px 22px;display:flex;align-items:center;gap:16px;}
+details.loc summary::-webkit-details-marker{display:none;}
+details.loc summary .icowrap{width:56px;height:56px;border-radius:13px;background:#eef3fb;display:flex;align-items:center;justify-content:center;flex:0 0 56px;}
+details.loc summary .ttl{flex:1;}
+details.loc summary h3{font-size:21px;font-weight:800;color:#1a2b3c;}
+details.loc summary .note{font-size:12.5px;color:#778;margin-top:2px;}
+details.loc summary .chev{font-size:20px;color:#9fb4c7;transition:transform .15s;flex:0 0 auto;}
+details.loc[open] summary .chev{transform:rotate(90deg);}
+details.loc[open] summary{border-radius:14px 14px 0 0;box-shadow:0 1px 0 rgba(0,0,0,.04);}
+.loc-body{background:#fbfcfd;border-radius:0 0 14px 14px;padding:22px 22px 24px;box-shadow:0 3px 10px rgba(20,40,70,.08);}
+
+.opt-grid{display:grid;gap:16px;}
+.opt-grid.c2{grid-template-columns:1fr 1fr;}
+.opt-grid.c3{grid-template-columns:1fr 1fr 1fr;}
+.opt-grid.c4{grid-template-columns:1fr 1fr 1fr 1fr;}
+
+.optcard{background:#fff;border-radius:14px;box-shadow:0 2px 7px rgba(20,40,70,.07);overflow:hidden;display:flex;flex-direction:column;}
+.optcard .ohead{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;background:#f6f8fb;}
+.optcard .ohead .name{font-size:15.5px;font-weight:800;color:#1a2b3c;}
+.osumi{font-size:11px;font-weight:800;padding:4px 10px;border-radius:6px;color:#fff;white-space:nowrap;}
+.osumi.s1{background:#27ae60;}.osumi.s2{background:#2e86de;}.osumi.s3{background:#e8930c;}
+.optcard .icorow{padding:12px 18px 0;display:flex;justify-content:center;}
+.optcard .obody{padding:12px 18px 16px;flex:1;}
+.mm{font-size:12.3px;line-height:1.55;margin-bottom:9px;}
+.mm .k{font-weight:800;display:inline-block;margin-right:5px;}
+.mm.good .k{color:#1a8a4a;}
+.mm.bad .k{color:#c0392b;}
+
+.note-box{background:#fff;border-radius:12px;box-shadow:0 2px 7px rgba(20,40,70,.07);padding:16px 20px;margin-top:14px;font-size:12.8px;color:#556;line-height:1.6;}
+.note-box b{color:#1a2b3c;}
+
+.daiwa-callout{background:#fff7e6;border:1.5px dashed #e8930c;border-radius:12px;padding:14px 18px;margin-top:14px;font-size:12.8px;color:#7a5a1a;line-height:1.6;}
+.daiwa-callout b{color:#c47a0a;}
+
+/* matrix (stairs axes) */
+.matrix-wrap{background:#fff;border-radius:14px;box-shadow:0 2px 7px rgba(20,40,70,.07);padding:18px 20px;margin-bottom:16px;}
+.matrix-wrap .lead{font-size:13px;color:#556;line-height:1.6;margin-bottom:14px;}
+.matrix-wrap .lead b{color:#1a2b3c;}
+.matrix{display:grid;grid-template-columns:120px 1fr 1fr;gap:10px;}
+.matrix .colhead{display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:13px;color:#1a2b3c;background:#eef3fb;border-radius:10px;padding:10px;}
+.matrix .rowhead{display:flex;align-items:center;justify-content:center;text-align:center;font-weight:800;font-size:13px;color:#1a2b3c;background:#eef3fb;border-radius:10px;padding:10px;}
+.matrix .corner{}
+.matrix .cell{background:#fbfcfd;border-radius:10px;padding:12px 14px;font-size:11.8px;line-height:1.5;border:1.5px solid #eef1f4;}
+.matrix .cell .t{font-weight:800;color:#1a2b3c;font-size:13px;margin-bottom:5px;}
+.matrix .cell.best{border:2px solid #e8930c;background:#fffaf0;}
+.matrix .cell.best .t::after{content:" 🔥SNSでよく見る組合せ";font-size:10px;font-weight:700;color:#e8930c;}
+
+/* ceiling cross-section icons share style */
+.csec{display:block;}
+.foot{text-align:center;font-size:12px;color:#99a;margin-top:30px;padding-bottom:10px;}
+
+.final-box{background:linear-gradient(135deg,#11203a,#1a2b3c);color:#fff;border-radius:18px;padding:34px 40px;margin-top:10px;}
+.final-box h2{font-size:23px;font-weight:800;color:#ffd166;margin-bottom:18px;text-align:center;}
+.final-list{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.fitem{background:rgba(255,255,255,.06);border-radius:10px;padding:13px 17px;font-size:13.5px;line-height:1.6;}
+.fitem b{color:#7ddfff;}
+</style></head><body>
+
+<div class="hero">
+<h1>家づくり技術カタログ</h1>
+<div class="sub">場所別×プラスアルファ ― 技術・メリット・デメリット・おすすめ判定を一気見</div>
+<div class="badges">
+  <div class="badge">35坪・2階建て</div>
+  <div class="badge">4〜5人家族</div>
+  <div class="badge">4〜5LDK</div>
+  <div class="badge">和室なし方針</div>
+  <div class="badge">60年LCC重視</div>
+</div>
+<div class="legend"><b style="background:#27ae60;">◎ おすすめ</b><b style="background:#2e86de;">○ 状況次第</b><b style="background:#e8930c;">△ 要検討</b></div>
+<div class="hint">▶ 各タイトルをクリックすると開閉します。気になる場所だけ開いてな</div>
+</div>
+
+<div class="wrap">
+
+<div class="bigsec">
+<div class="bigsec-head partA"><h2>PART A. 場所別カタログ</h2><span class="d">部屋・場所ごとに選択肢を比較</span></div>
+
+<!-- 玄関 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><rect x="8" y="4" width="18" height="28" rx="1.5" fill="none" stroke="#2e86de" stroke-width="2.2"/><circle cx="21" cy="18" r="1.6" fill="#2e86de"/></svg></div>
+<div class="ttl"><h3>① 玄関</h3><div class="note">家の第一印象＋収納要望が直結するエリア</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c3">
+  <div class="optcard"><div class="ohead"><div class="name">シューズインクローク（土間収納）</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>靴・アウトドア用品・ベビーカーまで収納でき、玄関がスッキリ保てる</div>
+  <div class="mm bad"><span class="k">注意点</span>動線の途中に配置しないと結局使われなくなる。広さ確保で他スペースを圧迫</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">玄関ホールの採光（高窓・地窓）</div><span class="osumi s2">○</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>明るく開放的な第一印象になる。来客の印象もアップ</div>
+  <div class="mm bad"><span class="k">注意点</span>外からの視線対策が必要。高窓・地窓ならカーテン不要で解決可</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">断熱玄関ドア</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>玄関からの熱損失を防ぎ、家全体の断熱性能を底上げする</div>
+  <div class="mm bad"><span class="k">注意点</span>標準ドアよりコストが上がる</div>
+  </div></div>
+</div>
+</div>
+</details>
+
+<!-- 階段 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><polyline points="4,30 4,24 12,24 12,18 20,18 20,12 30,12 30,4" fill="none" stroke="#8e44ad" stroke-width="2.5"/></svg></div>
+<div class="ttl"><h3>② 階段 ― 「構造」と「配置」は別の軸</h3><div class="note">スケルトン階段とリビング階段、実は比べる対象が違う</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+
+<div class="matrix-wrap">
+<div class="lead"><b>スケルトン階段</b>は「構造」の話（蹴込み板の有無）。<b>リビング階段</b>は「配置」の話（どこに置くか）。この2つは独立した軸やから、実際には<b>箱型×リビング</b>も<b>スケルトン×廊下</b>もあり得る。SNSでよく見る「おしゃれな開放的階段」は、たいてい<b>スケルトン×リビングの組み合わせ</b>を指してる。</div>
+<div class="matrix">
+  <div class="corner"></div>
+  <div class="colhead">配置：廊下設置</div>
+  <div class="colhead">配置：リビング設置</div>
+
+  <div class="rowhead">構造：箱型</div>
+  <div class="cell"><div class="t">最も標準的な組み合わせ</div>コストが安く遮音性・断熱性も良い。階段下を収納にできる。開放感は出ない</div>
+  <div class="cell"><div class="t">収納と家族の接点を両立</div>階段下収納は維持しつつ、リビングを通る動線で家族の接点が増える。視線は遮られたまま</div>
+
+  <div class="rowhead">構造：スケルトン</div>
+  <div class="cell"><div class="t">廊下のままだと効果半減</div>明るさは多少向上するが、廊下にあるので開放感はリビング設置ほど活きない</div>
+  <div class="cell best"><div class="t">開放感・おしゃれ度MAX</div>視線が抜けて最も開放的。ただし費用・遮音性低下・冷暖房効率ダウンのデメリットも同時に最大化する</div>
+</div>
+</div>
+
+<div class="opt-grid c3">
+  <div class="optcard"><div class="ohead"><div class="name">箱型階段（構造）</div><span class="osumi s2">○</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>階段下を収納にできる。遮音性・断熱性に優れる</div>
+  <div class="mm bad"><span class="k">注意点</span>壁面が必要で、スケルトン階段より圧迫感が出やすい</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">スケルトン階段（構造）</div><span class="osumi s3">△</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>視線が抜けて明るく開放的。設置場所の自由度が高い</div>
+  <div class="mm bad"><span class="k">注意点</span>費用が高い、遮音性が低く音が伝わりやすい、冷暖房効率が下がる、階段下が使えない</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">リビング階段（配置）</div><span class="osumi s2">○</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>廊下・階段ホールを削減でき居住スペースを有効活用。家族が自然と顔を合わせる</div>
+  <div class="mm bad"><span class="k">注意点</span>リビングの音・冷気が2階へ伝わりやすい</div>
+  </div></div>
+</div>
+<div class="daiwa-callout">💡 <b>ダイワハウスで聞くこと：</b>箱型/スケルトン×廊下/リビングの4パターン、それぞれ標準対応か、組み合わせごとの価格差はどれくらいか聞いてみてな（→質問リストQ17参照）</div>
+</div>
+</details>
+
+<!-- 廊下 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><rect x="3" y="14" width="28" height="6" fill="#27ae60" opacity=".25"/><line x1="3" y1="17" x2="31" y2="17" stroke="#27ae60" stroke-width="2.2" stroke-dasharray="3,3"/></svg></div>
+<div class="ttl"><h3>③ 廊下</h3><div class="note">あるか／減らすかで、面積効率と音・プライバシーが裏返る</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c2">
+  <div class="optcard"><div class="ohead"><div class="name">廊下のあるプラン</div><span class="osumi s2">○</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>各室の音・プライバシーを確保しやすい。来客時も部屋の中が見えにくい</div>
+  <div class="mm bad"><span class="k">注意点</span>面積を食う。家事動線が長くなりがち</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">廊下を減らす（中廊下なし）プラン</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>削った面積をリビング・収納に転用できる。視線が抜けて広く感じ、家事動線も短縮</div>
+  <div class="mm bad"><span class="k">注意点</span>音・プライバシー問題が出やすい、冷暖房効率が下がりやすい、玄関から室内が見えやすい</div>
+  </div></div>
+</div>
+</div>
+</details>
+
+<!-- 子供部屋 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><rect x="4" y="6" width="26" height="22" rx="2" fill="none" stroke="#e8930c" stroke-width="2.2"/><line x1="17" y1="6" x2="17" y2="28" stroke="#e8930c" stroke-width="2.2" stroke-dasharray="3,3"/></svg></div>
+<div class="ttl"><h3>④ 子供部屋</h3><div class="note">今の人数だけでなく将来の家族構成まで見据える場所</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c2">
+  <div class="optcard"><div class="ohead"><div class="name">個室（最初から分ける）</div><span class="osumi s2">○</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>プライバシーが最初から確保される。入居後すぐ生活が安定</div>
+  <div class="mm bad"><span class="k">注意点</span>部屋数分の壁・ドア・窓が必要でコストが上がる。子供が小さい頃は部屋を持て余す</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">将来間仕切り（可変式1室）</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>初期費用を抑えられる。広い1室として明るく使え、将来の家族構成変化に対応できる</div>
+  <div class="mm bad"><span class="k">注意点</span>後から壁を作るとリフォーム費が新築時の10倍以上（100万円超）になることも。防音性・思春期のプライバシーは要検討</div>
+  </div></div>
+</div>
+</div>
+</details>
+
+<!-- 主寝室 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><rect x="4" y="16" width="26" height="12" rx="2" fill="none" stroke="#2e86de" stroke-width="2.2"/><rect x="6" y="10" width="9" height="8" rx="1.5" fill="#2e86de" opacity=".3"/></svg></div>
+<div class="ttl"><h3>⑤ 主寝室</h3><div class="note">WIC（ウォークインクローゼット）の配置で使い勝手が決まる</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c2">
+  <div class="optcard"><div class="ohead"><div class="name">WIC：寝室内に直結</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>起きてすぐ着替えられる。夫婦のみで使うなら一番自然な配置</div>
+  <div class="mm bad"><span class="k">注意点</span>寝室の睡眠スペースが狭くなりがち</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">WIC：洗面室に直結</div><span class="osumi s2">○</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>お風呂上がりに直接着替えられる。寝室を広く保てる</div>
+  <div class="mm bad"><span class="k">注意点</span>主寝室から少し離れた配置になる</div>
+  </div></div>
+</div>
+<div class="note-box"><b>広さの目安：</b>夫婦2人なら2〜3畳が標準。レイアウトはコの字型（壁全体を収納化）かII型（通路を挟んで両側収納）。通路幅は60cm以上、着替えスペースは100cm程度確保すると窮屈さを感じにくい。</div>
+</div>
+</details>
+
+<!-- 天井 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><rect x="4" y="6" width="26" height="6" fill="#5d7184" opacity=".3"/><line x1="4" y1="9" x2="30" y2="9" stroke="#5d7184" stroke-width="2.2"/></svg></div>
+<div class="ttl"><h3>⑥ 天井（仕上げ）― 断面で見ると一発で分かる</h3><div class="note">ナチュラル・オーセンティック内観の要望に直結</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c4">
+  <div class="optcard"><div class="ohead"><div class="name">クロス</div><span class="osumi s2">○</span></div>
+  <div class="icorow"><svg class="csec" width="130" height="70" viewBox="0 0 130 70">
+    <line x1="12" y1="22" x2="12" y2="58" stroke="#cdd5dd" stroke-width="2"/><line x1="118" y1="22" x2="118" y2="58" stroke="#cdd5dd" stroke-width="2"/>
+    <line x1="12" y1="22" x2="118" y2="22" stroke="#5d7184" stroke-width="3"/>
+    <line x1="20" y1="26" x2="110" y2="26" stroke="#cdd5dd" stroke-width="1" stroke-dasharray="2,3"/>
+  </svg></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>コストが安く工期も短い。柄・色のバリエーションが豊富</div>
+  <div class="mm bad"><span class="k">注意点</span>調湿性がなく、5年程度で継ぎ目が開く可能性</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">羽目板（板張り）</div><span class="osumi s1">◎</span></div>
+  <div class="icorow"><svg class="csec" width="130" height="70" viewBox="0 0 130 70">
+    <line x1="12" y1="30" x2="12" y2="58" stroke="#cdd5dd" stroke-width="2"/><line x1="118" y1="30" x2="118" y2="58" stroke="#cdd5dd" stroke-width="2"/>
+    <rect x="12" y="18" width="106" height="12" fill="#c9a374"/>
+    <line x1="29" y1="18" x2="29" y2="30" stroke="#a8825a" stroke-width="1"/><line x1="46" y1="18" x2="46" y2="30" stroke="#a8825a" stroke-width="1"/>
+    <line x1="63" y1="18" x2="63" y2="30" stroke="#a8825a" stroke-width="1"/><line x1="80" y1="18" x2="80" y2="30" stroke="#a8825a" stroke-width="1"/>
+    <line x1="97" y1="18" x2="97" y2="30" stroke="#a8825a" stroke-width="1"/>
+  </svg></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>自然な木目で調湿性・リラックス効果あり。ナチュラル内観にド直球</div>
+  <div class="mm bad"><span class="k">注意点</span>建材・施工コストが高くなる</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">梁見せ</div><span class="osumi s2">○</span></div>
+  <div class="icorow"><svg class="csec" width="130" height="70" viewBox="0 0 130 70">
+    <line x1="12" y1="16" x2="12" y2="58" stroke="#cdd5dd" stroke-width="2"/><line x1="118" y1="16" x2="118" y2="58" stroke="#cdd5dd" stroke-width="2"/>
+    <line x1="12" y1="16" x2="118" y2="16" stroke="#5d7184" stroke-width="2.5"/>
+    <rect x="28" y="16" width="11" height="16" fill="#7a5230"/><rect x="58" y="16" width="11" height="16" fill="#7a5230"/><rect x="88" y="16" width="11" height="16" fill="#7a5230"/>
+  </svg></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>開放的でおしゃれな見た目。高天井との相性が良い</div>
+  <div class="mm bad"><span class="k">注意点</span>掃除の手間が増え、空調効率も下がりやすい</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">折り上げ天井</div><span class="osumi s2">○</span></div>
+  <div class="icorow"><svg class="csec" width="130" height="70" viewBox="0 0 130 70">
+    <line x1="12" y1="30" x2="12" y2="58" stroke="#cdd5dd" stroke-width="2"/><line x1="118" y1="30" x2="118" y2="58" stroke="#cdd5dd" stroke-width="2"/>
+    <path d="M12,30 H42 V14 H88 V30 H118" fill="none" stroke="#5d7184" stroke-width="3"/>
+    <rect x="40" y="13" width="4" height="3" fill="#ffd166"/><rect x="86" y="13" width="4" height="3" fill="#ffd166"/>
+  </svg></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>中央を一段高くして開放感を演出。照明で表情をつけやすい</div>
+  <div class="mm bad"><span class="k">注意点</span>通常天井よりコストが上がる</div>
+  </div></div>
+</div>
+<div class="daiwa-callout">💡 <b>ダイワハウスで聞くこと：</b>標準仕様はどれ？4種類それぞれの追加費用の目安は？（→質問リストQ18参照）</div>
+</div>
+</details>
+
+</div>
+
+<div class="bigsec">
+<div class="bigsec-head partB"><h2>PART B. プラスアルファ</h2><span class="d">場所で区切れない、家全体に関わる技術</span></div>
+
+<!-- 太陽光・蓄電池 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><rect x="3" y="3" width="13" height="13" fill="#e8930c" opacity=".25" stroke="#e8930c" stroke-width="1.5"/><rect x="18" y="3" width="13" height="13" fill="#e8930c" opacity=".25" stroke="#e8930c" stroke-width="1.5"/><rect x="3" y="18" width="13" height="13" fill="#e8930c" opacity=".25" stroke="#e8930c" stroke-width="1.5"/><rect x="18" y="18" width="13" height="13" fill="#e8930c" opacity=".25" stroke="#e8930c" stroke-width="1.5"/></svg></div>
+<div class="ttl"><h3>太陽光発電・蓄電池</h3><div class="note">屋根の形（片流れ）の選択ともリンクする</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c2">
+  <div class="optcard"><div class="ohead"><div class="name">太陽光発電（3〜5kW目安）</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>自家消費で光熱費を圧縮。ZEH補助金との相性も良く、停電時の備えにもなる</div>
+  <div class="mm bad"><span class="k">注意点</span>初期費用は3〜5kWで約100〜200万円。屋根一体型は固定資産税が上がる場合がある</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">蓄電池</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>夜間・悪天候でも発電した電気を使える。災害時の長期停電対策にもなる（見積もり依頼の9割超が同時検討するほど実質必須化）</div>
+  <div class="mm bad"><span class="k">注意点</span>太陽光に加えてさらに初期費用が上乗せされる</div>
+  </div></div>
+</div>
+</div>
+</details>
+
+<!-- 耐震・制震・免震 -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><rect x="8" y="10" width="18" height="20" fill="none" stroke="#c0392b" stroke-width="2.2"/><line x1="8" y1="30" x2="26" y2="30" stroke="#c0392b" stroke-width="2.5"/></svg></div>
+<div class="ttl"><h3>耐震・制震・免震</h3><div class="note">耐える／吸収する／伝えない、の3つのアプローチ</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c3">
+  <div class="optcard"><div class="ohead"><div class="name">耐震構造</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>費用を抑えられる。対応できる施工会社が多く、最も一般的（標準で必須）</div>
+  <div class="mm bad"><span class="k">注意点</span>大地震では大規模補修・建替えリスクが残る</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">制震構造</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>ダンパーが揺れを吸収し構造体・家具・内装の被害を軽減。繰り返す余震にも強い</div>
+  <div class="mm bad"><span class="k">注意点</span>装置の点検・交換コストが長期的に発生する</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">免震構造</div><span class="osumi s3">△</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>建物と地面を切り離し揺れを大幅軽減。大地震・横揺れに特に強い</div>
+  <div class="mm bad"><span class="k">注意点</span>300〜500万円の追加コスト。対応するハウスメーカーが少ない</div>
+  </div></div>
+</div>
+<div class="note-box"><b>実務的な結論：</b>一般的な注文住宅では「耐震＋制震」の組み合わせが主流。免震はコスト・対応会社の少なさから優先度はやや低め。</div>
+</div>
+</details>
+
+<!-- 高天井・吹き抜け -->
+<details class="loc">
+<summary><div class="icowrap"><svg width="30" height="30" viewBox="0 0 34 34"><polygon points="17,4 30,30 4,30" fill="none" stroke="#1a2b3c" stroke-width="2.2"/></svg></div>
+<div class="ttl"><h3>高天井・吹き抜け</h3><div class="note">あんたの希望要素・断熱性能とセットで考えるべき項目</div></div><div class="chev">▶</div></summary>
+<div class="loc-body">
+<div class="opt-grid c2">
+  <div class="optcard"><div class="ohead"><div class="name">吹き抜け（上下階を貫通）</div><span class="osumi s2">○</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>開放感が最大。採光性も上がり光あふれる空間になる</div>
+  <div class="mm bad"><span class="k">注意点</span>冷暖房効率が下がる、2階に音・匂いが伝わる、掃除・照明交換がしづらい</div>
+  </div></div>
+
+  <div class="optcard"><div class="ohead"><div class="name">高天井のみ（吹き抜けなし）</div><span class="osumi s1">◎</span></div>
+  <div class="obody">
+  <div class="mm good"><span class="k">良い点</span>2階の居住スペースを削らずに開放感を得られる。断熱・空調の制御もしやすい</div>
+  <div class="mm bad"><span class="k">注意点</span>吹き抜けほどの抜け感・採光は出ない</div>
+  </div></div>
+</div>
+<div class="note-box"><b>成功のカギ：</b>吹き抜けを選ぶなら断熱等級6以上＋シーリングファンや全館空調とセットで検討するのが鉄則。2階個室を優先したいなら「高天井のみ」が現実的な代替案。</div>
+</div>
+</details>
+
+</div>
+
+<div class="final-box">
+<h2>✅ 場所別カタログ × プラスアルファ 統合チェック</h2>
+<div class="final-list">
+<div class="fitem"><b>玄関</b>＝シューズインクローク＋断熱ドアの組み合わせが収納要望とLCC方針の両方に効く</div>
+<div class="fitem"><b>階段</b>＝「構造（箱型/スケルトン）」と「配置（廊下/リビング）」は別軸。両方MAXにすると開放感も最大だがデメリットも重なる</div>
+<div class="fitem"><b>廊下</b>＝減らす方針が収納・コンパクトな2F4部屋構成と相性◎。寝室だけは音対策を一工夫</div>
+<div class="fitem"><b>子供部屋</b>＝今の年齢を考えると将来間仕切りが有力。防音性は事前に建築会社に確認</div>
+<div class="fitem"><b>主寝室</b>＝WICは寝室内直結が基本形。2〜3畳＋通路60cm以上を目安に</div>
+<div class="fitem"><b>天井</b>＝羽目板がナチュラル・オーセンティック内観にド直球。コスト次第でアクセント使いも検討</div>
+<div class="fitem"><b>太陽光・蓄電池</b>＝今はセットが主流。片流れ屋根との組み合わせで発電効率を最大化</div>
+<div class="fitem"><b>耐震・制震・免震</b>＝「耐震＋制震」が実務的な定番。免震は予算と相談</div>
+<div class="fitem"><b>高天井・吹き抜け</b>＝断熱とセットが鉄則。2階を優先するなら「高天井のみ」も検討に</div>
+</div>
+</div>
+
+</div>
+<div class="foot">出典：住宅メディア・施主アンケート・公式サイトの公開情報をもとに作成（2026年6月時点）</div>
+</body></html>
